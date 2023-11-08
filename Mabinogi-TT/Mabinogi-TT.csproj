@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RootNamespace>MabinogiTT</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>mtt.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="mtt.ico" />
+  </ItemGroup>
+  <ItemGroup>  
+    <RuntimeHostConfigurationOption Include="Switch.System.Windows.DoNotScaleForDpiChanges" Value="true" />  
+  </ItemGroup>
+
+</Project>
