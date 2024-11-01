@@ -34,8 +34,8 @@ namespace MabinogiTT
 		private static readonly TimeSpan _caoimhimCyclePeriod = new(0, 11, 0); // Ceann <-> Connous
 		private static readonly TimeSpan _caoimhimBoardingDuration = new(0, 6, 0);
 		private static readonly TimeSpan _caoimhimSailingDuration = new(0, 5, 0);
-		private static readonly TimeSpan _cobhToBelvastStartOffset = new(0, 2, 0);
-		private static readonly TimeSpan _belvastToCobhStartOffset = new(0, 2, 30);
+		private static readonly TimeSpan _cobhToBelvastStartOffset = new(0, 2, 30);
+		private static readonly TimeSpan _belvastToCobhStartOffset = new(0, 2, 0);
 		private static readonly TimeSpan _cobhToQillaStartOffset = new(0, 1, 30);
 		private static readonly TimeSpan _qillaToCobhStartOffset = new(0, 1, 0);
 		private static readonly TimeSpan _ceannToSellaStartOffset = new(0, 1, 30);
@@ -50,22 +50,22 @@ namespace MabinogiTT
 		private static readonly Color _colorSailingBg = Color.FromRgb((byte)(_colorSailing.R / 2), (byte)(_colorSailing.G / 2), (byte)(_colorSailing.B / 2));
 
 		private readonly DispatcherTimer _dispatcherTimer = new(DispatcherPriority.Normal);
-		private SolidColorBrush _cobhToBelvastFg = new(Colors.Transparent);
-		private SolidColorBrush _cobhToBelvastBg = new(Colors.Transparent);
-		private SolidColorBrush _belvastToCobhFg = new(Colors.Transparent);
-		private SolidColorBrush _belvastToCobhBg = new(Colors.Transparent);
-		private SolidColorBrush _cobhToQillaFg = new(Colors.Transparent);
-		private SolidColorBrush _cobhToQillaBg = new(Colors.Transparent);
-		private SolidColorBrush _qillaToCobhFg = new(Colors.Transparent);
-		private SolidColorBrush _qillaToCobhBg = new(Colors.Transparent);
-		private SolidColorBrush _ceannToSellaFg = new(Colors.Transparent);
-		private SolidColorBrush _ceannToSellaBg = new(Colors.Transparent);
-		private SolidColorBrush _sellaToCeannFg = new(Colors.Transparent);
-		private SolidColorBrush _sellaToCeannBg = new(Colors.Transparent);
-		private SolidColorBrush _ceannToConnousFg = new(Colors.Transparent);
-		private SolidColorBrush _ceannToConnousBg = new(Colors.Transparent);
-		private SolidColorBrush _connousToCeannFg = new(Colors.Transparent);
-		private SolidColorBrush _connousToCeannBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _cobhToBelvastFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _cobhToBelvastBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _belvastToCobhFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _belvastToCobhBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _cobhToQillaFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _cobhToQillaBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _qillaToCobhFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _qillaToCobhBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _ceannToSellaFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _ceannToSellaBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _sellaToCeannFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _sellaToCeannBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _ceannToConnousFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _ceannToConnousBg = new(Colors.Transparent);
+		private readonly SolidColorBrush _connousToCeannFg = new(Colors.Transparent);
+		private readonly SolidColorBrush _connousToCeannBg = new(Colors.Transparent);
 		private BoatState _cobhToBelvastBoatState = BoatState.Boarding;
 		private BoatState _belvastToCobhBoatState = BoatState.Boarding;
 		private BoatState _cobhToQillaBoatState = BoatState.Boarding;
@@ -150,40 +150,6 @@ namespace MabinogiTT
 			}
 		}
 
-		private static TimeSpan GetTimeSinceTuesday9AM(DateTime dateTime)
-		{
-			TimeSpan serverUptime;
-			if (dateTime.DayOfWeek == DayOfWeek.Thursday && dateTime.Hour >= 9)
-			{
-				serverUptime = dateTime - new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 9, 0, 0);
-				serverUptime = new TimeSpan(serverUptime.Days, serverUptime.Hours, serverUptime.Minutes, serverUptime.Seconds);
-				return serverUptime;
-			}
-			else
-			{
-				serverUptime = dateTime - dateTime.Date.AddDays(-((dateTime.DayOfWeek - DayOfWeek.Thursday + 7) % 7)).AddHours(9);
-				serverUptime = new TimeSpan(serverUptime.Days, serverUptime.Hours, serverUptime.Minutes, serverUptime.Seconds);
-				return serverUptime;
-			}
-		}
-
-		private static TimeSpan GetTimeSinceTuesday10AM(DateTime dateTime)
-		{
-			TimeSpan serverUptime;
-			if (dateTime.DayOfWeek == DayOfWeek.Thursday && dateTime.Hour >= 10)
-			{
-				serverUptime = dateTime - new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 10, 0, 0);
-				serverUptime = new TimeSpan(serverUptime.Days, serverUptime.Hours, serverUptime.Minutes, serverUptime.Seconds);
-				return serverUptime;
-			}
-			else
-			{
-				serverUptime = dateTime - dateTime.Date.AddDays(-((dateTime.DayOfWeek - DayOfWeek.Thursday + 7) % 7)).AddHours(10);
-				serverUptime = new TimeSpan(serverUptime.Days, serverUptime.Hours, serverUptime.Minutes, serverUptime.Seconds);
-				return serverUptime;
-			}
-		}
-
 		private void InitializeAllTimers(TimeSpan timeSince)
 		{
 			InitializeTimer(_carasekCyclePeriod, _belvastToCobhStartOffset, _carasekBoardingDuration, _carasekSailingDuration,
@@ -252,7 +218,7 @@ namespace MabinogiTT
 		{
 			if (progress.Value > 0)
 			{
-				progress.Value = progress.Value - 1;
+				progress.Value--;
 				if (boatState == BoatState.Boarding)
 				{
 					if (progress.Value < 30)

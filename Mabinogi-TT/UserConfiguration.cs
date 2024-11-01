@@ -35,7 +35,7 @@ namespace MabinogiTT
 		public void LoadConfiguration(StreamReader reader)
 		{
 			string line = reader.ReadLine()!;
-			_serverTimeOffset = new TimeSpan(Int64.Parse(line));
+			_serverTimeOffset = new TimeSpan(long.Parse(line));
 		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;

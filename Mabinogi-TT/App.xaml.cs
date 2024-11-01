@@ -18,7 +18,7 @@ namespace MabinogiTT
 	{
 		private static MainWindow? _mainWindow;
 		private static FileStream? _fileStream;
-		private static UserConfiguration _userConfiguration = new();
+		private static readonly UserConfiguration _userConfiguration = new();
 		private static bool _hasPropertyChanged = false;
 		private static double _savedLeft = 0;
 		private static double _savedTop = 0;
@@ -107,7 +107,7 @@ namespace MabinogiTT
 				{
 					_fileStream.Position = 0;
 					_fileStream.SetLength(0L);
-					StreamWriter writer = new StreamWriter(_fileStream, System.Text.Encoding.Default, 256, false);
+					StreamWriter writer = new(_fileStream, System.Text.Encoding.Default, 256, false);
 					writer.Write((int)_savedLeft);
 					writer.Write(',');
 					writer.Write((int)_savedTop);

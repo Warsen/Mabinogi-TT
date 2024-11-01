@@ -2,18 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>MabinogiTT</RootNamespace>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>mtt.ico</ApplicationIcon>
+    <ApplicationIcon>mabinogitt.ico</ApplicationIcon>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="mtt.ico" />
-  </ItemGroup>
-  <ItemGroup>  
-    <RuntimeHostConfigurationOption Include="Switch.System.Windows.DoNotScaleForDpiChanges" Value="true" />  
+    <Content Include="mabinogitt.ico" />
   </ItemGroup>
 
 </Project>
